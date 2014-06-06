@@ -25,6 +25,6 @@
       <string v="oracle.jdeveloper.model.PathsConfiguration/ApplicationBuildToolContentSet"/>
    </list>
    <list n="listOfChildren">
-      <hash><url n="URL" path="Login.jpr"/></hash>
+      <hash><url n="URL" path="SIDHN/SIDHN.jpr"/></hash>
    </list>
 </jws:workspace>
