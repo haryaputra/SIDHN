@@ -70,7 +70,7 @@ public class Dhn_m {
     	return eksekutor.get_all_result(query);
     }
 
-    public ResultSet get_some_a_dhn (String periode, String kantor_bank, String inst_bank, String nama_nasabah) throws SQLException {
+    public ResultSet get_some_a_dhn (String periode, String kantor_bank, String inst_bank, String nama_nasabah, int frow, int nrow) throws SQLException {
 
         boolean firstly = true;
         query = "SELECT * FROM T_DHN WHERE ";
@@ -115,7 +115,7 @@ public class Dhn_m {
         System.out.println(query);
 
         //rset = stmt.executeQuery(query);
-        return eksekutor.get_some_result(query, 1, 3);
+        return eksekutor.get_some_result(query, frow, nrow);
     }
 
     // mengambil DHN by periode+nomor_urut
