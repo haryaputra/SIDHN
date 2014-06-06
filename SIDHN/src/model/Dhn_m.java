@@ -15,7 +15,6 @@ public class Dhn_m {
     public Dhn_m() throws SQLException {
     	super();
     	eksekutor = new Qexec_m();
-    	stmt = eksekutor.getDBConn();
     }
 
     // mengambil data DHN dengan :
@@ -66,30 +65,69 @@ public class Dhn_m {
 
     	query += "ORDER BY NOMOR_DH";
         System.out.println(query);
-    	rset = stmt.executeQuery(query);
-    	return rset;
+
+    	//rset = stmt.executeQuery(query);
+    	return eksekutor.get_all_result(query);
+    }
+
+    public ResultSet get_some_a_dhn (String periode, String kantor_bank, String inst_bank, String nama_nasabah) throws SQLException {
+
+        boolean firstly = true;
+        query = "SELECT * FROM T_DHN WHERE ";
+
+        if(!periode.equals("")){
+            if(!firstly){
+                query += "AND ";
+            }else{
+                firstly = false;
+            }
+            query += "NOMOR_DH='"+periode+"' ";
+        }
+
+        if(!kantor_bank.equals("")){
+            if(!firstly){
+                query += "AND ";
+            }else{
+                firstly = false;
+            }
+            query += "SANDI_KANTOR_BANK='"+kantor_bank+"' ";
+        }
+
+        if(!inst_bank.equals("")){
+            if(!firstly){
+                query += "AND ";
+            }else{
+                firstly = false;
+            }
+            query += "SANDI_INSTITUSI_BANK='"+inst_bank+"' ";
+        }
+
+        if(!nama_nasabah.equals("")){
+            if(!firstly){
+                query += "AND ";
+            }else{
+                firstly = false;
+            }
+            query += "NAMA_NASABAH LIKE '%"+nama_nasabah+"%' ";
+        }
+
+        query += "ORDER BY NOMOR_DH";
+        System.out.println(query);
+
+        //rset = stmt.executeQuery(query);
+        return eksekutor.get_some_result(query, 1, 3);
     }
 
     // mengambil DHN by periode+nomor_urut
     public ResultSet get_dhn_pk (String periode, String urutan) throws SQLException {
     	query = "SELECT * FROM T_DHN WHERE NOMOR_DH='"+periode+"' AND NO_URUT='"+urutan+"' ";
-    	rset = stmt.executeQuery(query);
-    	if(rset.next()){
-            return rset;
-        }else{
-            return null;
-        }
+    	return eksekutor.get_one_result(query);
     }
 
     // mengambil DHN by nomor rekening
     public ResultSet get_dhn_rekening (String no_rekening) throws SQLException {
     	query = "SELECT * FROM T_DHN WHERE REKENING='"+no_rekening+"' ";
-    	rset = stmt.executeQuery(query);
-        if(rset.next()){
-            return rset;
-        }else{
-            return null;
-        }
+    	return eksekutor.get_one_result(query);
     }
 
 }

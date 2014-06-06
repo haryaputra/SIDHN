@@ -19,7 +19,6 @@ public class Pengguna_m {
     public Pengguna_m() throws SQLException {
 		super();
 		eksekutor = new Qexec_m();
-		stmt = eksekutor.getDBConn();
     }	
 
     // input : user_id (string)

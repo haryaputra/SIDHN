@@ -10,6 +10,7 @@ public class Login_c {
     
     private Pengguna_m user_model;
     private int fail_login;
+    private boolean statusLogin;
     private boolean hsl_tmp;
 
     
@@ -20,6 +21,7 @@ public class Login_c {
         super();
         user_model = new Pengguna_m();
         fail_login = 0;
+        statusLogin = false;
     }
 
     /**
@@ -41,7 +43,7 @@ public class Login_c {
         ResultSet pengguna = user_model.get_user_userid(userid);
         int status_penggguna;
         String password_pengguna;
-
+        this.statusLogin = false;
         fail_login = user_model.get_fail_userid(userid);
 
         System.out.println("login trial : "+fail_login);
@@ -97,9 +99,13 @@ public class Login_c {
                 case 1 : alert = "username tidak ada dalam daftar pengguna";break;
                 case 2 : alert = "username tidak aktif";break;
                 case 3 : alert = ("password salah, percobaan "+(fail_login+1)+" dari 3");break;
-                case 4 : alert = "login berhasil";break;
+                case 4 : this.statusLogin=true;break;
                 case 5 : alert = "anda sudah mencapai batas percobaan login! Akun diblokir";break;
             }
             return alert;
+        }
+    
+    public boolean getStatusLogin (){
+        return this.statusLogin;
         }
 }
