@@ -68,7 +68,7 @@ public class Login_c {
                 if(fail_login >= 3){
                     hsl_tmp = user_model.block_user(userid);
                 }
-                return 2;
+                return 5;
             }
         }else{
             return 1;
@@ -96,8 +96,9 @@ public class Login_c {
                 case 0 : alert = "username atau password tidak boleh kosong";break;
                 case 1 : alert = "username tidak ada dalam daftar pengguna";break;
                 case 2 : alert = "username tidak aktif";break;
-                case 3 : alert = "password salah";break;
+                case 3 : alert = ("password salah, percobaan "+fail_login+" dari 3";break;
                 case 4 : alert = "login berhasil";break;
+                case 5 : alert = "anda sudah mencapai batas percobaan login! Akun diblokir";break;
             }
             return alert;
         }
