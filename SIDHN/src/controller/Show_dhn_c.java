@@ -1,5 +1,6 @@
 package controller;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import model.Dhn_m;
@@ -12,8 +13,7 @@ public class Show_dhn_c {
     	dhn_model = new Dhn_m();
     }
 
-    public ResultSet show_dhn_periode (String periode, int frow, int nrow)
-    {
+    public ResultSet show_dhn_periode (String periode, int frow, int nrow) throws SQLException {
     	ResultSet rset = dhn_model.get_some_a_dhn(periode, "", "", "", frow, nrow);
     	return rset;
     }
