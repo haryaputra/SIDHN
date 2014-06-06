@@ -22,6 +22,7 @@ public class Dhn_m {
     // - kode kantor bank
     // - kode institusi bank
     // - nama nasabah (like atau exact)
+
     public ResultSet get_some_dhn (String periode, String kantor_bank, String inst_bank, String nama_nasabah) throws SQLException {
 
     	boolean firstly = true;
